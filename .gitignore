@@ -14,3 +14,7 @@ htmlcov/
 .coverage
 node_modules
 .project
+.idea/
+example_project/__pycache__/
+example_project/settings/__pycache__/
+timepiece/__pycache__/

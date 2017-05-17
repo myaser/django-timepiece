@@ -24,7 +24,7 @@ parser.add_argument(
 parser.add_argument(
     '--settings',
     dest="settings",
-    default="example_project.settings.tests",
+    default="settings.tests",
     help="Django settings file to use.",
 )
 

@@ -10,4 +10,4 @@ install:
 before_script:
   - psql -c 'create database timepiece;' -U postgres
 script:
-  - tox -- --settings=example_project.settings.travis
+  - tox -- --settings=settings.travis
