@@ -6,3 +6,5 @@ flake8>=2.4.0
   pyflakes>=0.8.1
 mock>=1.0.1
 tox>=1.9.2
+
+coveralls

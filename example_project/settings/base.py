@@ -2,7 +2,6 @@
 
 import os
 
-
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 DATABASES = {
@@ -36,7 +35,6 @@ INSTALLED_APPS = [
     'bootstrap_toolkit',
     'compressor',
     'selectable',
-    'django-extensions',
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -83,11 +81,11 @@ SECRET_KEY = 'oap0ahyb%_iitq1un(4j!#v81_%6jl$wefeh@$^=metg6w8pr^'
 
 SITE_ID = 1
 
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'public', 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = []
+# STATICFILES_DIRS = ( os.path.join('static'), )
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -129,7 +127,7 @@ USE_TZ = False  # NOTE: django-timepiece does not currently support timezones.
 
 WSGI_APPLICATION = 'wsgi.application'
 
-
+ALLOWED_HOSTS = ['0.0.0.0', ]
 # === Third-party app settings. === #
 
 COMPRESS_PRECOMPILERS = [
@@ -137,7 +135,6 @@ COMPRESS_PRECOMPILERS = [
 ]
 
 COMPRESS_ROOT = '%s/static/' % PROJECT_PATH
-
 
 # === Timepiece settings. === #
 

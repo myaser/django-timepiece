@@ -4,18 +4,18 @@ django-timepiece
 django-timepiece is a multi-user application for tracking people's time on
 projects. Documentation is available on `Read The Docs`_.
 
-:master: |master-status|
-:develop: |develop-status|
+|travis-status| |coveralls-status|
 
-.. |master-status| image::
-    https://api.travis-ci.org/caktus/django-timepiece.png?branch=master
+.. |travis-status| image::
+    https://travis-ci.org/myaser/django-timepiece.svg?branch=develop
     :alt: Build Status
-    :target: https://travis-ci.org/caktus/django-timepiece
+    :target: https://travis-ci.org/myaser/django-timepiece
 
-.. |develop-status| image::
-    https://api.travis-ci.org/caktus/django-timepiece.png?branch=develop
-    :alt: Build Status
-    :target: https://travis-ci.org/caktus/django-timepiece
+.. |coveralls-status| image::
+    https://coveralls.io/repos/github/myaser/django-timepiece/badge.svg?branch=develop
+    :alt: coverage
+    :target: https://coveralls.io/github/myaser/django-timepiece?branch=develop
+
 
 Features
 --------

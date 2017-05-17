@@ -1,13 +1,45 @@
 language: python
-python: "3.5"
-env:
-  - TOXENV=python3.5-django1.9
-  - TOXENV=python2.7-django1.9
-  - TOXENV=python3.5-django1.8
-  - TOXENV=python2.7-django1.8
-install:
-  - pip install -q tox==2.2.1
+
+services:
+- postgresql
+
+python:
+- '3.5'
+
 before_script:
-  - psql -c 'create database timepiece;' -U postgres
+- export DATABASE_URL=postgres://postgres@localhost/timepiece
+- export DJANGO_SECRET=`openssl rand -base64 32`
+- export DJANGO_SETTINGS_MODULE=settings.travis
+- psql -c 'CREATE DATABASE "timepiece";' -U postgres
+
+install:
+- pip install -r requirements/base.txt
+- pip install -r requirements/tests.txt
+- npm install less@1.4.0
+
 script:
-  - tox -- --settings=settings.travis
+- coverage run example_project/manage.py test
+
+after_success:
+- coveralls
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: gESU4eu7mFcYFNKe5yCpgA8worJWtUmfMKHFiU1tBpQU37lDV8UeoFKrdw9HBPDF/2MyNf1HQxLwE9Y8DuTFV+WlctTsNR1Rj1ItUJywrQw7y7u7wEuc2lWXFu4fPD3oaYc/oZ8cGITdxAzs7Us2JFNZVxzn1hM0HkGUBauaia4NDp8SWZbnWVnsheRaXNoeF5Znstx+zMJrhLt5A7Y+UYyoywdzbZfLg+MVqn0LE5nBuB2x1QjMng1FtYOP+pALxpJHr6k3zcoXtiq2+lJpBuRDkoxxWuBSVwyXBD1oJ/zSpw2zWDplkTIhO+ghEHBGeKAnT56EINSst4eic5hyRD9wTIrFZDe3/GKdtrR8DurIarflB0jO+fcIjLpLpliUgKAZSQvrIc1q+XF5/Y7g1o1bP6AiouRXXSgouWs4LiiPDK4H+uPrVApcVEj32skUw195nCSHmK5qmoP9CBDtAiIp1YUKFJLArpRb9f63TAz9GwjQJP1P/Qd4+keLjJtiVWiZJIlLQ5a5mHBk0rRmxzDwB7X0r9kK/0gJY48UPGQ+8iwQONgNtYet9oFY+ufUejLyLpzE/4WcGI33J5elT7mO7cWbZxwjlZ1eIlv3s59Vog2lfSr7ZHH6xckpZz9jTAyrMPod3J7vafALC88JUwO5yUTcxl6SBCuhyQMvgcQ=
+  app: timepiece-demo
+  on:
+    repo: myaser/django-timepiece
+    branch: develop
+  run:
+  - "npm install"
+  - "./example_project/manage.py collectstatic --noinput"
+  - "./example_project/manage.py migrate"
+
+notifications:
+  email: false
+
+matrix:
+  fast_finish: true
+
+cache: pip

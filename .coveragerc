@@ -1,3 +1,9 @@
 [run]
 source = timepiece
-omit = */tests/*, */migrations/*, */admin.py
+omit = */tests/*,
+       */migrations/*,
+       */admin.py,
+
+[report]
+exclude_lines = import*,
+                from*import*
