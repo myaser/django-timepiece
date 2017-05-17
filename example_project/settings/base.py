@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bootstrap_toolkit',
     'compressor',
     'selectable',
+    'django-extensions',
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -76,7 +77,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-ROOT_URLCONF = 'example_project.urls'
+ROOT_URLCONF = 'urls'
 
 SECRET_KEY = 'oap0ahyb%_iitq1un(4j!#v81_%6jl$wefeh@$^=metg6w8pr^'
 
@@ -126,7 +127,7 @@ USE_L10N = True
 
 USE_TZ = False  # NOTE: django-timepiece does not currently support timezones.
 
-WSGI_APPLICATION = 'example_project.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # === Third-party app settings. === #
